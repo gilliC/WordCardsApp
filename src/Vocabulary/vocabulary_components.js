@@ -25,7 +25,7 @@ export const WordContainer = styled.View`
   margin-top: 10px;
   border-color: ${props => props.genderColor || primaryColor};
   background-color: ${props =>
-    getWithOpacity(props.genderColor || 'primaryColor', 0.5)};
+    getWithOpacity(props.genderColor || 'primaryColor', 0.1)};
 `;
 
 export const WordText = styled.Text`

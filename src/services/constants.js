@@ -36,7 +36,6 @@ export function hexToRGB(hex) {
 }
 
 export function designByGender(gender, rgb = false) {
-  gender = capitalizeFirstLetter(gender);
   switch (gender) {
     case 'Der':
       return rgb ? '(88,164,176)' : '#58A4B0';

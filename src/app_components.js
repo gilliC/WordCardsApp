@@ -29,10 +29,3 @@ function formatColorToGetWithOpacity(color) {
   return color[0];
 }
 export const {primaryColor, secondaryColor} = appColors;
-
-const Body = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  background-color: ${secondaryColor};
-`;

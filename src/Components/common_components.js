@@ -31,7 +31,7 @@ export const MainButton = props => {
 
 export const Title = styled.Text`
   color: ${primaryColor};
-  font-size: 40;
+  font-size: ${props => props.fontSize || '40'};
   text-align: center;
 `;
 
