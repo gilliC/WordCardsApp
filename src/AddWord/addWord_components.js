@@ -1,43 +1,56 @@
 import styled from 'styled-components';
-import {View, TouchableOpacity} from 'react-native';
+import React from 'react';
 
-import {designByGender} from '../services/constants';
-import {primaryColor} from '../app_components';
+import {designByGender, getWithOpacity} from '../services/functionsUtilities';
+import {primaryColor, secondaryColor} from '../services/constants';
+import {Button, Input, Icon} from 'react-native-elements';
+import {errorStyle, inputStyle} from '../Components/common_components';
 
-export const addButtonStyle = {
-  backgroundColor: primaryColor,
-  width: '100%',
-  alignSelf: 'center',
-  height: 50,
-};
-
-export const addButtonContainerStyle = {
-  backgroundColor: primaryColor,
-  width: '90%',
-  alignSelf: 'center',
-  height: 50,
-  marginTop: 20,
-};
-export const getSelectedButtonStyle = gender => {
-  let color = designByGender(gender) || primaryColor;
+const addButtonStyle = () => {
+  const color = getWithOpacity('secondaryColor', 0.2);
   return {
     backgroundColor: color,
+    borderColor: 'white',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    width: '100%',
+    height: '100%',
   };
 };
 
-export const buttonGroupContainerStyle = {
+const addButtonContainerStyle = {
   width: '90%',
-  margin: 0,
   height: 50,
   alignSelf: 'center',
   marginTop: 20,
+  backgroundColor: 'transparent',
 };
 
-export const buttonGroupTextStyle = {
-  fontSize: 25,
+export const InputAddWord = props => {
+  return (
+    <Input
+      {...props}
+      containerStyle={inputStyle}
+      errorStyle={errorStyle}
+      placeholderTextColor={secondaryColor}
+    />
+  );
 };
 
-export const errorStyle = {
-  color: 'red',
-  textAlign: 'center',
+export const ButtonAddWord = props => {
+  return (
+    <Button
+      {...props}
+      buttonStyle={addButtonStyle()}
+      containerStyle={addButtonContainerStyle}
+      icon={
+        <Icon
+          name="plus"
+          type="font-awesome"
+          size={25}
+          color={secondaryColor}
+        />
+      }
+    />
+  );
 };

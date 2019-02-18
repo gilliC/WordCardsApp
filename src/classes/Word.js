@@ -1,4 +1,4 @@
-import {capitalizeFirstLetter} from '../services/constants';
+import {capitalizeFirstLetter} from '../services/functionsUtilities';
 const wordModel = 'server.word';
 const genders = ['Die', 'Der', 'Das'];
 
@@ -7,8 +7,10 @@ export default class Word {
     if (dbItem.model !== wordModel)
       throw 'The item should be of server.word model';
     this.id = dbItem.pk;
-    this.englishTranslation = dbItem.fields.english_translation;
-    this.germanWord = dbItem.fields.german_word;
+    this.englishTranslation = capitalizeFirstLetter(
+      dbItem.fields.english_translation,
+    );
+    this.germanWord = capitalizeFirstLetter(dbItem.fields.german_word);
     let gender = this.validateAndFormatGender(dbItem.fields.gender);
     this.gender = gender;
   }

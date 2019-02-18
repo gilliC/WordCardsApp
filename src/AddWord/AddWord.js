@@ -1,23 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {ButtonGroup, Button, Input, Icon} from 'react-native-elements';
+import {View} from 'react-native';
+import {Icon} from 'react-native-elements';
 
+import {InputAddWord, ButtonAddWord} from './addWord_components';
 import {
-  addButtonStyle,
-  addButtonContainerStyle,
-  getSelectedButtonStyle,
-  buttonGroupContainerStyle,
-  buttonGroupTextStyle,
-  errorStyle,
-} from './addWord_components';
-import {Title} from '../Components/common_components';
-import {primaryColor} from '../app_components';
+  Title,
+  MainContainer,
+  GenderButtonGroup,
+  BackgroundStyleByGender,
+} from '../Components/common_components';
+import {secondaryColor} from '../services/constants';
 
 class AddWord extends Component {
-  static navigationOptions = {
-    title: 'Add A Word     ',
-  };
   constructor(props) {
     super(props);
     this.state = {
@@ -70,60 +65,46 @@ class AddWord extends Component {
       germanWordErrorMsg,
       translationErrorMsg,
     } = this.state;
-    let btnSelectedStyle = getSelectedButtonStyle(buttons[selectedIndex]);
+    let btnSelectedStyle = BackgroundStyleByGender(buttons[selectedIndex]);
     return (
-      <View>
+      <MainContainer>
         <Title>Add A Word</Title>
-        <Input
+        <InputAddWord
           placeholder="German word"
-          containerStyle={buttonGroupContainerStyle}
           onChangeText={text => this.onChangeGermanWord(text)}
-          errorStyle={errorStyle}
           errorMessage={germanWordErrorMsg}
           leftIcon={
             <Icon
               name="alpha-g-box"
               type="material-community"
               size={30}
-              color={primaryColor}
+              color={secondaryColor}
             />
           }
         />
-        <Input
+        <InputAddWord
           placeholder=" Translation"
-          containerStyle={buttonGroupContainerStyle}
-          errorStyle={errorStyle}
           errorMessage={translationErrorMsg}
           leftIcon={
             <Icon
               name="language"
               type="font-awesome"
               size={30}
-              color={primaryColor}
+              color={secondaryColor}
             />
           }
         />
 
         <View>
-          <ButtonGroup
+          <GenderButtonGroup
             onPress={this.updateIndex}
             selectedIndex={selectedIndex}
             buttons={buttons}
             selectedButtonStyle={btnSelectedStyle}
-            containerStyle={buttonGroupContainerStyle}
-            textStyle={buttonGroupTextStyle}
           />
         </View>
-        <Button
-          raised
-          onPress={this.onSendingForm}
-          buttonStyle={addButtonStyle}
-          containerStyle={addButtonContainerStyle}
-          icon={
-            <Icon name="plus" type="font-awesome" size={25} color="white" />
-          }
-        />
-      </View>
+        <ButtonAddWord onPress={this.onSendingForm} />
+      </MainContainer>
     );
   }
 }

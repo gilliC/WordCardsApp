@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import Proptypes from 'prop-types';
 import {connect} from 'react-redux';
-import Swiper from 'react-native-swiper';
 
 import {fetchData} from '../services/actions/vocabulary_actions';
-import {Title} from '../Components/common_components';
-import {ListContainer} from './vocabulary_components';
+import {
+  MainButton,
+  Title,
+  MainContainer,
+} from '../Components/common_components';
+import ExerciseByGender from './ExerciseByGender';
 
-import WordItem from './WordItem';
-
-class VocabularyList extends Component {
+class Practice extends Component {
   componentDidMount() {
     if (this.props.vocabularyCount === 0) {
       this.props.fetchData();
@@ -18,7 +19,6 @@ class VocabularyList extends Component {
   render() {
     let component = <Title>Wait ..</Title>;
     const {error, loading, vocabulary} = this.props;
-
     if (error) {
       if (error.message === 'Network request failed') {
         console.log(error.message);
@@ -37,19 +37,14 @@ class VocabularyList extends Component {
     }
     if (vocabulary.length > 0) {
       return (
-        <ListContainer>
-          <Swiper showsPagination={false} showsButtons={true}>
-            {vocabulary.map(word => {
-              return <WordItem word={word} key={word.id} />;
-            })}
-          </Swiper>
-        </ListContainer>
+        <MainContainer>
+          <ExerciseByGender word={vocabulary[0]} />
+        </MainContainer>
       );
     }
     return component;
   }
 }
-
 const mapStateToProps = state => {
   return {
     vocabulary: state.vocabulary.vocabulary,
@@ -62,4 +57,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {fetchData},
-)(VocabularyList);
+)(Practice);

@@ -57,6 +57,10 @@
 		4C769D53B6CF41C383F09791 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED7FF3B425F14EC6A9ACFCE6 /* Octicons.ttf */; };
 		88D2C5AE6AFE4FEE83AB767D /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE9B87BDA1C542E0A9AE7822 /* SimpleLineIcons.ttf */; };
 		80B72D6CE74245CD932CF190 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFE08B58DBD04A8483DFB7F2 /* Zocial.ttf */; };
+		081009BB951540FBBF86A415 /* AbrilFatface-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80E2C72269EA407CA542A915 /* AbrilFatface-Regular.ttf */; };
+		911ACC7CE5614BED8BE05E69 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A16C1505B36E4103BA7C1934 /* Oswald-Regular.ttf */; };
+		E366812F818D4CFBA4DF849E /* BreeSerif-Regular .ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D0212FB18E844BF8048BA01 /* BreeSerif-Regular .ttf */; };
+		D01D42B335E84CCC97B67FD6 /* AlfaSlabOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 547E8975A7C54FB9A623A375 /* AlfaSlabOne-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,6 +388,10 @@
 		ED7FF3B425F14EC6A9ACFCE6 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		AE9B87BDA1C542E0A9AE7822 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		AFE08B58DBD04A8483DFB7F2 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		80E2C72269EA407CA542A915 /* AbrilFatface-Regular.ttf */ = {isa = PBXFileReference; name = "AbrilFatface-Regular.ttf"; path = "../assets/fonts/AbrilFatface-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A16C1505B36E4103BA7C1934 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; name = "Oswald-Regular.ttf"; path = "../assets/fonts/Oswald-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7D0212FB18E844BF8048BA01 /* BreeSerif-Regular .ttf */ = {isa = PBXFileReference; name = "BreeSerif-Regular .ttf"; path = "../assets/fonts/BreeSerif-Regular .ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		547E8975A7C54FB9A623A375 /* AlfaSlabOne-Regular.ttf */ = {isa = PBXFileReference; name = "AlfaSlabOne-Regular.ttf"; path = "../assets/fonts/AlfaSlabOne-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -672,6 +680,10 @@
 				ED7FF3B425F14EC6A9ACFCE6 /* Octicons.ttf */,
 				AE9B87BDA1C542E0A9AE7822 /* SimpleLineIcons.ttf */,
 				AFE08B58DBD04A8483DFB7F2 /* Zocial.ttf */,
+				80E2C72269EA407CA542A915 /* AbrilFatface-Regular.ttf */,
+				A16C1505B36E4103BA7C1934 /* Oswald-Regular.ttf */,
+				7D0212FB18E844BF8048BA01 /* BreeSerif-Regular .ttf */,
+				547E8975A7C54FB9A623A375 /* AlfaSlabOne-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1138,6 +1150,10 @@
 				4C769D53B6CF41C383F09791 /* Octicons.ttf in Resources */,
 				88D2C5AE6AFE4FEE83AB767D /* SimpleLineIcons.ttf in Resources */,
 				80B72D6CE74245CD932CF190 /* Zocial.ttf in Resources */,
+				081009BB951540FBBF86A415 /* AbrilFatface-Regular.ttf in Resources */,
+				911ACC7CE5614BED8BE05E69 /* Oswald-Regular.ttf in Resources */,
+				E366812F818D4CFBA4DF849E /* BreeSerif-Regular .ttf in Resources */,
+				D01D42B335E84CCC97B67FD6 /* AlfaSlabOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
 
-import {capitalizeFirstLetter, designByGender} from '../services/constants';
+import {
+  capitalizeFirstLetter,
+  designByGender,
+} from '../services/functionsUtilities';
 import {WordContainer, WordText} from './vocabulary_components';
 
 export default ({word}) => {
@@ -16,7 +18,10 @@ export default ({word}) => {
       <WordText color={genderColor}>
         {gender} {germanWord}
       </WordText>
-      <WordText fontSize={20} color={genderColor}>
+      <WordText
+        fontSize={40}
+        fontFamily={'BreeSerif-Regular'}
+        color={genderColor}>
         {englishTranslation}
       </WordText>
     </WordContainer>
