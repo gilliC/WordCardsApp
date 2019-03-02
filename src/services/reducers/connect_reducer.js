@@ -1,40 +1,34 @@
-import {
-  FETCH_VOCABULARY_BEGIN,
-  FETCH_VOCABULARY_FAILURE,
-  FETCH_VOCABULARY_SUCCESS,
-} from '../constants';
+import {CONNECT_BEGIN, CONNECT_FAILURE, CONNECT_SUCCESS} from '../constants';
 
 const initialState = {
-  vocabulary: [],
-  vocabularyCount: NaN,
+  isConnect: null,
   loading: false,
   error: null,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case FETCH_VOCABULARY_BEGIN:
+    case CONNECT_BEGIN:
       return {
         ...state,
         loading: true,
         error: null,
       };
 
-    case FETCH_VOCABULARY_SUCCESS:
+    case CONNECT_SUCCESS:
+      console.log('connect succeed');
       return {
         ...state,
-        vocabularyCount: action.payload.vocabulary.length,
         loading: false,
-        vocabulary: action.payload.vocabulary,
+        isConnect: true,
       };
 
-    case FETCH_VOCABULARY_FAILURE:
+    case CONNECT_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        vocabularyCount: 0,
-        vocabulary: [],
+        isConnect: false,
       };
 
     default:

@@ -10,6 +10,19 @@ export function handleErrors(response) {
   }
   return response;
 }
+
+export function getRandom(max) {
+  max = Math.floor(max);
+  return Math.floor(Math.random() * max);
+}
+
+export function isStringAWord(string) {
+  if (typeof string !== 'string') return false;
+  if (/\d/.test(string)) return false;
+  if (string.length <= 1) return false;
+  return true;
+}
+///////////// COLORS /////////////
 export function isHex(hex) {
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) return true;
   return false;

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
-import {ImageBackground, View, Text} from 'react-native';
+import {ImageBackground} from 'react-native';
 
 import store from './src/services/configureStore';
 
-import Home from './src/Home/Home';
-import Vocabulary from './src/Vocabulary/Vocabulary';
-import AddWord from './src/AddWord/AddWord';
-import Practice from './src/Practice/Practice';
+import Home from './src/screens/Home/Home';
+import Vocabulary from './src/screens/Vocabulary/Vocabulary';
+import AddWord from './src/screens/AddWord/AddWord';
+import Practice from './src/screens/Practice/Practice';
 
 const imgSource = './src/drawable/background3.jpg';
 

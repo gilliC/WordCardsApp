@@ -4,36 +4,26 @@ import {connect} from 'react-redux';
 import Swiper from 'react-native-swiper';
 
 import {fetchData} from '../services/actions/vocabulary_actions';
-import {Title} from '../Components/common_components';
+import {MainText} from '../components/common_components';
+import ErrorComponent from '../Components/Error';
 import {ListContainer} from './vocabulary_components';
 
 import WordItem from './WordItem';
 
 class VocabularyList extends Component {
   componentDidMount() {
-    if (this.props.vocabularyCount === 0) {
+    if (!this.props.vocabularyCount) {
       this.props.fetchData();
     }
   }
   render() {
-    let component = <Title>Wait ..</Title>;
+    let component = <MainText>Wait ..</MainText>;
     const {error, loading, vocabulary} = this.props;
 
-    if (error) {
-      if (error.message === 'Network request failed') {
-        console.log(error.message);
-        return (
-          <Title>
-            It seems like there is an issue with the network connection
-          </Title>
-        );
-      } else {
-        return <Title>Error! {error.message}</Title>;
-      }
-    }
+    if (error) return <ErrorComponent error={error} />;
     if (loading) {
       console.log('loading...');
-      return <Title>Loading ..</Title>;
+      return <MainText>Loading ..</MainText>;
     }
     if (vocabulary.length > 0) {
       return (

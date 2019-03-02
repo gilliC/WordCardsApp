@@ -4,7 +4,7 @@ import React from 'react';
 import {designByGender, getWithOpacity} from '../services/functionsUtilities';
 import {primaryColor, secondaryColor} from '../services/constants';
 import {Button, Input, Icon} from 'react-native-elements';
-import {errorStyle, inputStyle} from '../Components/common_components';
+import {errorStyle, inputStyle} from '../components/common_components';
 
 const addButtonStyle = () => {
   const color = getWithOpacity('secondaryColor', 0.2);
@@ -24,17 +24,6 @@ const addButtonContainerStyle = {
   alignSelf: 'center',
   marginTop: 20,
   backgroundColor: 'transparent',
-};
-
-export const InputAddWord = props => {
-  return (
-    <Input
-      {...props}
-      containerStyle={inputStyle}
-      errorStyle={errorStyle}
-      placeholderTextColor={secondaryColor}
-    />
-  );
 };
 
 export const ButtonAddWord = props => {

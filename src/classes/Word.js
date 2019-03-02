@@ -7,9 +7,7 @@ export default class Word {
     if (dbItem.model !== wordModel)
       throw 'The item should be of server.word model';
     this.id = dbItem.pk;
-    this.englishTranslation = capitalizeFirstLetter(
-      dbItem.fields.english_translation,
-    );
+    this.translation = capitalizeFirstLetter(dbItem.fields.translation);
     this.germanWord = capitalizeFirstLetter(dbItem.fields.german_word);
     let gender = this.validateAndFormatGender(dbItem.fields.gender);
     this.gender = gender;

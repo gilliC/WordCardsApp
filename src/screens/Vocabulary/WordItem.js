@@ -9,7 +9,7 @@ import {WordContainer, WordText} from './vocabulary_components';
 export default ({word}) => {
   let gender = word.gender;
   gender = capitalizeFirstLetter(gender);
-  const {germanWord, englishTranslation} = word;
+  const {germanWord, translation} = word;
   let genderColor = designByGender(gender);
   let genderStyle = {borderColor: genderColor};
 
@@ -22,7 +22,7 @@ export default ({word}) => {
         fontSize={40}
         fontFamily={'BreeSerif-Regular'}
         color={genderColor}>
-        {englishTranslation}
+        {translation}
       </WordText>
     </WordContainer>
   );

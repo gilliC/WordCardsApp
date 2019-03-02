@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View} from 'react-native';
+import {View, Text, KeyboardAvoidingView} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import {InputAddWord, ButtonAddWord} from './addWord_components';
+import {insertWord} from '../services/actions/single_word_actions';
+import {fetchData} from '../services/actions/vocabulary_actions';
+import {ButtonAddWord} from './addWord_components';
 import {
-  Title,
-  MainContainer,
+  MainText,
+  MainInput,
   GenderButtonGroup,
   BackgroundStyleByGender,
-} from '../Components/common_components';
+} from '../components/common_components';
 import {secondaryColor} from '../services/constants';
+import {isStringAWord} from '../services/functionsUtilities';
 
 class AddWord extends Component {
   constructor(props) {
@@ -22,40 +25,49 @@ class AddWord extends Component {
       buttons: ['Das', 'Die', 'Der'],
       germanWordErrorMsg: '',
       translationErrorMsg: '',
+      formErrorMsg: '',
     };
+
     this.onSendingForm = this.onSendingForm.bind(this);
     this.updateIndex = this.updateIndex.bind(this);
     this.onChangeGermanWord = this.onChangeGermanWord.bind(this);
     this.onChangeTranslation = this.onChangeTranslation.bind(this);
+    this.validateAllFields = this.validateAllFields.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.connectAnswer === 'Succeed') this.props.fetchData();
   }
   onSendingForm() {
-    console.log('press');
-    /**
-    const state = this.state;
-    const {germanWord, englishTrans} = state;
-    const gender = state.buttons[state.selectedIndex];
-    //this.props.insertWord(germanWord, englishTrans, gender);
-    //*/
+    const {germanWord, translation, buttons, selectedIndex} = this.state;
+    if (this.validateAllFields()) {
+      this.setState({formErrorMsg: ''});
+      const gender = buttons[selectedIndex];
+      this.props.insertWord(germanWord, translation, gender);
+    } else {
+      this.setState({formErrorMsg: 'Not all fileds have been filled'});
+    }
   }
 
   updateIndex(selectedIndex) {
     this.setState({selectedIndex});
   }
-  validateInput(text) {
-    if (text.length <= 1) return 'You must fill this field';
-    return true;
+  validateAllFields() {
+    const {germanWord, translation} = this.state;
+    if (isStringAWord(germanWord) && isStringAWord(translation)) return true;
+    return false;
   }
   onChangeGermanWord(text) {
-    const answer = this.validateInput(text);
+    const answer = isStringAWord(text) ? true : 'You must fill this field';
     if (answer !== true)
       this.setState({germanWordErrorMsg: answer, germanWord: text});
-    else this.setState({germanWord: text});
+    else this.setState({germanWordErrorMsg: '', germanWord: text});
   }
   onChangeTranslation(text) {
-    const answer = this.validateInput(text);
+    const answer = isStringAWord(text) ? true : 'You must fill this field';
     if (answer !== true)
       this.setState({translationErrorMsg: answer, translation: text});
-    else this.setState({translation: text});
+    else this.setState({translationErrorMsg: '', translation: text});
   }
 
   render() {
@@ -64,12 +76,13 @@ class AddWord extends Component {
       buttons,
       germanWordErrorMsg,
       translationErrorMsg,
+      formErrorMsg,
     } = this.state;
     let btnSelectedStyle = BackgroundStyleByGender(buttons[selectedIndex]);
     return (
-      <MainContainer>
-        <Title>Add A Word</Title>
-        <InputAddWord
+      <KeyboardAvoidingView>
+        <MainText>Add A Word</MainText>
+        <MainInput
           placeholder="German word"
           onChangeText={text => this.onChangeGermanWord(text)}
           errorMessage={germanWordErrorMsg}
@@ -82,8 +95,9 @@ class AddWord extends Component {
             />
           }
         />
-        <InputAddWord
+        <MainInput
           placeholder=" Translation"
+          onChangeText={text => this.onChangeTranslation(text)}
           errorMessage={translationErrorMsg}
           leftIcon={
             <Icon
@@ -104,8 +118,26 @@ class AddWord extends Component {
           />
         </View>
         <ButtonAddWord onPress={this.onSendingForm} />
-      </MainContainer>
+        <MainText fontSize={20} color="red" fontFamily="Oswald_Regular">
+          {formErrorMsg}
+        </MainText>
+        <MainText fontSize={20}>
+          {this.props.connectLoading}
+          {this.props.connectAnswer}
+        </MainText>
+      </KeyboardAvoidingView>
     );
   }
 }
-export default AddWord;
+const mapStateToProps = state => {
+  return {
+    connectAnswer: state.singleWordAnswer.answer,
+    connectLoading: state.singleWordAnswer.loading,
+    connectError: state.singleWordAnswer.error,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {insertWord, fetchData},
+)(AddWord);

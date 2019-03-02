@@ -4,11 +4,11 @@ import {View} from 'react-native';
 import {Icon} from 'react-native-elements';
 
 import {
-  Title,
+  MainText,
   MainContainer,
   GenderButtonGroup,
   BackgroundStyleByGender,
-} from '../Components/common_components';
+} from '../components/common_components';
 import {secondaryColor} from '../services/constants';
 
 class ExerciseByGender extends Component {
@@ -16,33 +16,37 @@ class ExerciseByGender extends Component {
     super(props);
     const {germanWord, translation, gender} = this.props.word;
     this.state = {
-      germanWord: germanWord,
-      translation: translation,
-      gender: gender,
-      selectedIndex: 0,
       buttons: ['Das', 'Die', 'Der'],
+      selectedIndex: 0,
+      isMistake: false,
     };
-    this.onSendingForm = this.onSendingForm.bind(this);
     this.updateIndex = this.updateIndex.bind(this);
-  }
-  onSendingForm() {
-    console.log('press');
+    this.checkIfCorrect = this.checkIfCorrect.bind(this);
   }
 
-  updateIndex(selectedIndex) {
-    this.setState({selectedIndex});
+  checkIfCorrect(answerIndex) {
+    if (this.state.buttons[answerIndex] === this.props.word.gender) {
+      this.setState({isMistake: false});
+      this.props.onCorrectAnswer();
+    } else {
+      this.setState({isMistake: true});
+      return false;
+    }
   }
-  validateInput(text) {
-    if (text.length <= 1) return 'You must fill this field';
-    return true;
+  updateIndex(selectedIndex) {
+    if (!this.state.isCorrect) {
+      this.setState({selectedIndex});
+      this.checkIfCorrect(selectedIndex);
+    }
   }
 
   render() {
-    const {germanWord, translation, selectedIndex, buttons} = this.state;
+    const {selectedIndex, buttons, isMistake} = this.state;
+    const {germanWord, translation} = this.props.word;
     let btnSelectedStyle = BackgroundStyleByGender(buttons[selectedIndex]);
     return (
       <MainContainer>
-        <Title>{germanWord}</Title>
+        <MainText>{germanWord}</MainText>
         <View>
           <GenderButtonGroup
             onPress={this.updateIndex}
@@ -50,6 +54,9 @@ class ExerciseByGender extends Component {
             buttons={buttons}
             selectedButtonStyle={btnSelectedStyle}
           />
+          {isMistake && (
+            <MainText fontSize={15}>Oops wrong answer, try again!</MainText>
+          )}
         </View>
       </MainContainer>
     );
