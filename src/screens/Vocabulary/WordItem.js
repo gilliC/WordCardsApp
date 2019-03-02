@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {
   capitalizeFirstLetter,
   designByGender,
-} from '../services/functionsUtilities';
+} from '../../services/functionsUtilities';
 import {WordContainer, WordText} from './vocabulary_components';
 
 export default ({word}) => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import GestureRecognizer from 'react-native-swipe-gestures';
-
 import {Text, View} from 'react-native';
-import {primaryColor} from '../services/constants';
-import {getWithOpacity} from '../services/functionsUtilities';
+
+import {primaryColor} from '../../services/constants';
+import {getWithOpacity} from '../../services/functionsUtilities';
 
 export const VocabularyContainer = styled(GestureRecognizer)`
   flex: 1;

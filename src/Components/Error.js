@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  MainButton,
-  MainText,
-  MainContainer,
-} from '../Components/common_components';
+import {MainButton, MainText, MainContainer} from './common_components';
 
 export default props => {
   console.log(props);

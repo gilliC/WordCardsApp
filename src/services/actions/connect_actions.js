@@ -21,8 +21,7 @@ export function connectServer() {
     axios
       .get(serverRequestsHandler.getRequestUrl(CONNECT_SERVER))
       .then(res => {
-        if (res.data.answer === 'connection succeed')
-          dispatch(connectSuccess());
+        if (res.data.answer === true) dispatch(connectSuccess());
       })
       .catch(error => {
         dispatch(connectFailure(error));

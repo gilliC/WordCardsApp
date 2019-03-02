@@ -3,17 +3,17 @@ import {connect} from 'react-redux';
 import {View, Text, KeyboardAvoidingView} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import {insertWord} from '../services/actions/single_word_actions';
-import {fetchData} from '../services/actions/vocabulary_actions';
+import {insertWord} from '../../services/actions/single_word_actions';
+import {fetchData} from '../../services/actions/vocabulary_actions';
 import {ButtonAddWord} from './addWord_components';
 import {
   MainText,
   MainInput,
   GenderButtonGroup,
   BackgroundStyleByGender,
-} from '../components/common_components';
-import {secondaryColor} from '../services/constants';
-import {isStringAWord} from '../services/functionsUtilities';
+} from '../../components/common_components';
+import {secondaryColor} from '../../services/constants';
+import {isStringAWord} from '../../services/functionsUtilities';
 
 class AddWord extends Component {
   constructor(props) {

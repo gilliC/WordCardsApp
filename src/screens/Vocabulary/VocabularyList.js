@@ -3,9 +3,9 @@ import Proptypes from 'prop-types';
 import {connect} from 'react-redux';
 import Swiper from 'react-native-swiper';
 
-import {fetchData} from '../services/actions/vocabulary_actions';
-import {MainText} from '../components/common_components';
-import ErrorComponent from '../Components/Error';
+import {fetchData} from '../../services/actions/vocabulary_actions';
+import {MainText} from '../../components/common_components';
+import ErrorComponent from '../../components/Error';
 import {ListContainer} from './vocabulary_components';
 
 import WordItem from './WordItem';

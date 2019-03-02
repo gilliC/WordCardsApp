@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import Proptypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {connectServer} from '../services/actions/connect_actions';
+import {connectServer} from '../../services/actions/connect_actions';
 
 import {
   MainButton,
   MainText,
   MainContainer,
-} from '../components/common_components';
-
+} from '../../components/common_components';
+import Error from '../../components/Error';
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,21 +20,38 @@ class Home extends Component {
     }
   }
   render() {
+    const {connect, connectError, connectLoading} = this.props;
+    if (connect) {
+      return (
+        <MainContainer>
+          <MainButton
+            text="Vocabulary"
+            onPress={() => {
+              this.props.navigation.navigate('Vocabulary');
+            }}
+          />
+          <MainText>Hello User!</MainText>
+          <MainButton
+            text="Practice"
+            onPress={() => {
+              this.props.navigation.navigate('Practice');
+            }}
+          />
+        </MainContainer>
+      );
+    }
+
+    if (connectError) return <Error error={connectError} />;
+    if (connectLoading) {
+      return (
+        <MainContainer>
+          <MainText>Loading...</MainText>
+        </MainContainer>
+      );
+    }
     return (
       <MainContainer>
-        <MainButton
-          text="Vocabulary"
-          onPress={() => {
-            this.props.navigation.navigate('Vocabulary');
-          }}
-        />
-        <MainText>Hello User!</MainText>
-        <MainButton
-          text="Practice"
-          onPress={() => {
-            this.props.navigation.navigate('Practice');
-          }}
-        />
+        <MainText>Wait...</MainText>
       </MainContainer>
     );
   }
@@ -43,7 +60,8 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     connect: state.connect.isConnect,
-    connectionError: state.connect.error,
+    connectError: state.connect.error,
+    connectLoading: state.connect.loading,
   };
 };
 

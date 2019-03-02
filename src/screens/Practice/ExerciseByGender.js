@@ -8,8 +8,8 @@ import {
   MainContainer,
   GenderButtonGroup,
   BackgroundStyleByGender,
-} from '../components/common_components';
-import {secondaryColor} from '../services/constants';
+} from '../../components/common_components';
+import {secondaryColor} from '../../services/constants';
 
 class ExerciseByGender extends Component {
   constructor(props) {

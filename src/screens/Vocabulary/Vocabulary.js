@@ -2,7 +2,7 @@ import React from 'react';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import VocabularyList from './VocabularyList';
-import {MainButton, MainContainer} from '../components/common_components';
+import {MainButton, MainContainer} from '../../components/common_components';
 import {VocabularyContainer, VocabularyBottom} from './vocabulary_components';
 
 export default props => {

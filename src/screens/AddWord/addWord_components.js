@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import React from 'react';
+import {Button, Icon} from 'react-native-elements';
 
-import {designByGender, getWithOpacity} from '../services/functionsUtilities';
-import {primaryColor, secondaryColor} from '../services/constants';
-import {Button, Input, Icon} from 'react-native-elements';
-import {errorStyle, inputStyle} from '../components/common_components';
+import {
+  designByGender,
+  getWithOpacity,
+} from '../../services/functionsUtilities';
+import {primaryColor, secondaryColor} from '../../services/constants';
+import {errorStyle, inputStyle} from '../../components/common_components';
 
 const addButtonStyle = () => {
   const color = getWithOpacity('secondaryColor', 0.2);
