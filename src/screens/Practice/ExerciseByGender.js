@@ -1,4 +1,6 @@
+import styled from 'styled-components';
 import React, {Component} from 'react';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import {connect} from 'react-redux';
 import {View} from 'react-native';
 import {Icon} from 'react-native-elements';
@@ -16,16 +18,14 @@ class ExerciseByGender extends Component {
     super(props);
     const {germanWord, translation, gender} = this.props.word;
     this.state = {
-      buttons: ['Das', 'Die', 'Der'],
-      selectedIndex: 0,
       isMistake: false,
     };
-    this.updateIndex = this.updateIndex.bind(this);
     this.checkIfCorrect = this.checkIfCorrect.bind(this);
+    this.onSwipe = this.onSwipe.bind(this);
   }
 
   checkIfCorrect(answerIndex) {
-    if (this.state.buttons[answerIndex] === this.props.word.gender) {
+    if (answerIndex === this.props.word.gender) {
       this.setState({isMistake: false});
       this.props.onCorrectAnswer();
     } else {
@@ -33,33 +33,43 @@ class ExerciseByGender extends Component {
       return false;
     }
   }
-  updateIndex(selectedIndex) {
-    if (!this.state.isCorrect) {
-      this.setState({selectedIndex});
-      this.checkIfCorrect(selectedIndex);
+
+  onSwipe(gestureName, gestureState) {
+    const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+    switch (gestureName) {
+      case SWIPE_UP:
+        this.checkIfCorrect('Der');
+        break;
+      case SWIPE_LEFT:
+        this.checkIfCorrect('Das');
+        break;
+      case SWIPE_RIGHT:
+        this.checkIfCorrect('Die');
+        break;
     }
   }
 
   render() {
-    const {selectedIndex, buttons, isMistake} = this.state;
+    const {isMistake} = this.state;
     const {germanWord, translation} = this.props.word;
-    let btnSelectedStyle = BackgroundStyleByGender(buttons[selectedIndex]);
     return (
-      <MainContainer>
-        <MainText>{germanWord}</MainText>
-        <View>
-          <GenderButtonGroup
-            onPress={this.updateIndex}
-            selectedIndex={selectedIndex}
-            buttons={buttons}
-            selectedButtonStyle={btnSelectedStyle}
-          />
-          {isMistake && (
-            <MainText fontSize={15}>Oops wrong answer, try again!</MainText>
-          )}
-        </View>
-      </MainContainer>
+      <Container onSwipe={(direction, state) => this.onSwipe(direction, state)}>
+        <MainContainer>
+          <MainText>{germanWord}</MainText>
+          <View>
+            {isMistake && (
+              <MainText fontSize={15}>Oops wrong answer, try again!</MainText>
+            )}
+          </View>
+        </MainContainer>
+      </Container>
     );
   }
 }
 export default ExerciseByGender;
+
+export const Container = styled(GestureRecognizer)`
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+`;

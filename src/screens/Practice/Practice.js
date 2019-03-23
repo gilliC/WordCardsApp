@@ -14,6 +14,7 @@ import ExerciseByGender from './ExerciseByGender';
 import CorrectAnswerTransition from './CorrectAnswerTransition';
 import FinishedPracticing from './FinishedPracticing';
 import ErrorComponent from '../../components/Error';
+import ExplanationByGender from './ExplanationByGender';
 
 class Practice extends Component {
   constructor(props) {
@@ -24,11 +25,13 @@ class Practice extends Component {
     this.state = {
       vocabulary: this.props.vocabulary,
       questionIndex: questionIndex,
+      showExplanation: true,
       isCorrect: false,
       isFinish: false,
     };
     this.onCorrectAnswer = this.onCorrectAnswer.bind(this);
     this.onFinishTransition = this.onFinishTransition.bind(this);
+    this.onFinishExplnation = this.onFinishExplnation.bind(this);
   }
   componentDidMount() {
     if (!this.props.vocabularyCount) {
@@ -50,6 +53,9 @@ class Practice extends Component {
         });
       else this.setState({questionIndex: newIndex, isCorrect: false});
     }
+  }
+  onFinishExplnation() {
+    this.setState({showExplanation: false});
   }
   onCorrectAnswer() {
     this.setState({isCorrect: true});
@@ -78,8 +84,18 @@ class Practice extends Component {
   render() {
     let component = <MainText>Wait ..</MainText>;
     const {error, loading, navigation} = this.props;
-    const {vocabulary, questionIndex, isCorrect, isFinish} = this.state;
+    const {
+      vocabulary,
+      questionIndex,
+      showExplanation,
+      isCorrect,
+      isFinish,
+    } = this.state;
 
+    if (showExplanation)
+      return (
+        <ExplanationByGender onFinishExplnation={this.onFinishExplnation} />
+      );
     if (isFinish) return <FinishedPracticing navigation={navigation} />;
     if (error) return <ErrorComponent error={error} />;
     if (loading || questionIndex === -1) return <MainText>Loading ..</MainText>;
